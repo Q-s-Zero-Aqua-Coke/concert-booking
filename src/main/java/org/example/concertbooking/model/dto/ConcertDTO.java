@@ -1,6 +1,6 @@
 package org.example.concertbooking.model.dto;
 
-public record Concert(
+public record ConcertDTO(
         String concert_id,
         String title,
         String date,
