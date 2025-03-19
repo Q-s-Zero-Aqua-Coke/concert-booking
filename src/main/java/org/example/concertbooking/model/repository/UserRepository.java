@@ -1,6 +1,7 @@
 package org.example.concertbooking.model.repository;
 
 import com.fasterxml.jackson.core.type.TypeReference;
+import org.example.concertbooking.model.dto.ConcertDTO;
 import org.example.concertbooking.model.dto.UserDTO;
 import org.springframework.stereotype.Repository;
 
@@ -21,6 +22,9 @@ public class UserRepository implements SupabaseRepository<UserDTO> {
 
     public UserDTO findById(String userId) throws Exception {
         String responseJson = findById(userId, tableName, "user_id");
-        return mapper.readValue(responseJson, new TypeReference<>() {});
+        List<UserDTO> userDTOList = mapper.readValue(responseJson, new TypeReference<>() {});
+        if(!userDTOList.isEmpty())
+            return userDTOList.get(0);
+        return null;
     }
 }

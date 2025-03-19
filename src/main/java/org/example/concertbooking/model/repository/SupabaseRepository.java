@@ -7,7 +7,6 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.util.List;
 
 public interface SupabaseRepository<T> {
     Dotenv dotenv = Dotenv.configure().ignoreIfMissing().load();
@@ -30,6 +29,8 @@ public interface SupabaseRepository<T> {
         if (response.statusCode() >= 400) {
             throw new Exception(response.statusCode() + " " + response.body());
         }
+
+        System.out.println(response.body());
     }
 
     default String findById(String id, String tableName, String idColumn) throws Exception {
